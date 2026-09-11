@@ -2,22 +2,18 @@ name: Firewall Assignment Autograding
 
 on:
   push:
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   autograde:
-    name: Run Firewall Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout student repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Make scripts executable
-        run: |
-          chmod +x autograding/grade.sh
-          chmod +x tests/test_firewall.sh
+      - name: Give test script permission
+        run: chmod +x test.sh
 
-      - name: Run autograder
-        run: |
-          ./autograding/grade.sh
+      - name: Run firewall tests
+        run: ./test.sh
