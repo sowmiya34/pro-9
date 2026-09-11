@@ -1,0 +1,23 @@
+name: Firewall Assignment Autograding
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  autograde:
+    name: Run Firewall Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout student repository
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: |
+          chmod +x autograding/grade.sh
+          chmod +x tests/test_firewall.sh
+
+      - name: Run autograder
+        run: |
+          ./autograding/grade.sh
